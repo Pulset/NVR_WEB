@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import NavTabs from './components/navTabs.vue'
 import NavMenu from './components/navMenu.vue'
 export default {
   name: 'app',
