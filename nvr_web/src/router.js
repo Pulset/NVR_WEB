@@ -9,6 +9,7 @@ import device from './components/setting/image/device.vue'
 import camera from './components/setting/image/camera.vue'
 import encode from './components/setting/image/encode.vue'
 import channelName from './components/setting/image/channelName.vue'
+
 // import intellPlayback from './intellPlayback.vue'
 // import alarm from './alarm.vue'
 

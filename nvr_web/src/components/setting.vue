@@ -12,7 +12,7 @@
                 </el-submenu>
             </el-menu>
             <div class="line"></div>
-            <router-view></router-view>
+            <router-view class="setting-main"></router-view>
         </el-col>
     </div>
 </template>
@@ -67,5 +67,10 @@ export default {
 .aside{
     width: 200px;
     min-height: 400px;
+}
+.setting-main {
+    position: absolute;
+        top: 100px;
+        left: 280px;
 }
 </style>

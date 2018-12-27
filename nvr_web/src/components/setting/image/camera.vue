@@ -21,9 +21,9 @@
   }
 </script>
 <style scoped>
-.test{
+/* .test{
         position: absolute;
         top: 100px;
         left: 280px;
-    }
+    } */
 </style>

@@ -1,15 +1,9 @@
 <template>
-  <!-- `checked` 为 true 或 false -->
-  <!-- <el-checkbox v-model="checked">备选项</el-checkbox> -->
     <div class="alarm-container">
+        <div>报警类型</div>
         <div v-for="(item, index) in alarmType" :key="index">
-            <el-checkbox v-model="item.enable">{{item.type}}</el-checkbox>
-            <el-checkbox v-model="item.enable">{{item.type}}</el-checkbox>
+            <el-checkbox v-model="item.enable" class="alarm-item">{{item.type}}</el-checkbox>
         </div>
-        <!-- <div v-for="(item, index) in alarmType" :key="index" v-if="(index - 0) % 2">
-            <el-checkbox v-model="item.enable">{{item.type}}</el-checkbox>
-            <el-checkbox v-model="item.enable">{{item.type}}</el-checkbox>
-        </div> -->
     </div>
 </template>
 <script>
@@ -37,6 +31,9 @@
 .alarm-container{
     position: absolute;
     top: 100px;
-    left: 280px;
+    left: 200px;
+}
+.alarm-item{
+    margin: 10px 0;
 }
 </style>
