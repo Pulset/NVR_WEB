@@ -1,8 +1,8 @@
 <template>
     <div>
         <el-col :span="24" :offset="3">
-            <el-menu :default-active="activeIndex" class="aside" router>
-                <el-submenu v-for="tab in tabs" v-bind:key="tab.title" index="tab.router">
+            <el-menu :default-active="activeIndex" class="aside" router :unique-opened="true">
+                <el-submenu v-for="tab in tabs" v-bind:key="tab.title" :index="tab.router">
                     <template slot="title">
                         <span slot="title">{{tab.title}}</span>
                     </template>    
@@ -20,11 +20,11 @@
 export default {
      data() {
       return {
-        activeIndex: '/image',
+        activeIndex: '1',
         tabs:[
             {
                 "title": "摄像头",
-                "router": "/setting/image",
+                "router": "1",
                 "children": [{
                     "title": "远程设备",
                     "router": "/setting/image/device"
@@ -40,7 +40,7 @@ export default {
                 }]
             },{
                 "title": "网络",
-                "router": "setting/network",
+                "router": "2",
                 "children": [{
                     "title": "TCP/IP",
                     "router": "setting/network/tcpIp"
