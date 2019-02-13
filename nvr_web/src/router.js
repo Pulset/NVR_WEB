@@ -9,6 +9,10 @@ import device from './components/setting/image/device.vue'
 import camera from './components/setting/image/camera.vue'
 import encode from './components/setting/image/encode.vue'
 import channelName from './components/setting/image/channelName.vue'
+import tcpIp from './components/setting/network/tcpIp.vue'
+import port from './components/setting/network/port.vue'
+import pppoe from './components/setting/network/pppoe.vue'
+import ddns from './components/setting/network/ddns.vue'
 // import videoStream from './components/setting/image/encode/videoStream.vue'
 
 // import intellPlayback from './intellPlayback.vue'
@@ -42,6 +46,18 @@ const routes = [{
         }, {
             path: 'image/channelName',
             component: channelName
+        }, {
+            path: 'network/tcpIp',
+            component: tcpIp
+        }, {
+            path: 'network/port',
+            component: port
+        }, {
+            path: 'network/pppoe',
+            component: pppoe
+        }, {
+            path: 'network/ddns',
+            component: ddns
         }]
     }]
 

@@ -43,16 +43,16 @@ export default {
                 "router": "2",
                 "children": [{
                     "title": "TCP/IP",
-                    "router": "setting/network/tcpIp"
+                    "router": "/setting/network/tcpIp"
                 },{
                     "title": "端口",
-                    "router": "setting/network/port"
+                    "router": "/setting/network/port"
                 },{
                     "title": "PPPOE",
-                    "router": "setting/network/pppoe"
+                    "router": "/setting/network/pppoe"
                 },{
                     "title": "DDNS",
-                    "router": "setting/network/ddns"
+                    "router": "/setting/network/ddns"
                 }]
             }
         ]
