@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="form" :model="form" label-width="80px">
+  <el-form ref="form" :model="form" label-width="80px" label-position="left">
     <el-form-item label="通道">
       <el-select v-model="form.channel" placeholder="请选择通道" >
         <el-option v-for="(channel, index) in channels" :key="index" :value="index" :label="channel"></el-option>
@@ -67,6 +67,6 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 
 </style>

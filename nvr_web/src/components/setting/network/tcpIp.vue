@@ -1,38 +1,82 @@
 <template>
-  <el-form label-width="80px">
-    <el-form-item v-for="item in channels" :label="item.title" :key="item.tile">
-      <el-input v-model="item.value"></el-input>
-    </el-form-item>
-    <el-form-item>
-      <el-button @click="onConfirm">确定</el-button>
-      <el-button @click="onRefresh">刷新</el-button>
-      <el-button @click="onDefault">恢复默认</el-button>
-    </el-form-item>
-  </el-form>
+ <div>
+  <el-tabs v-model="activeName" type="card" >
+    <el-tab-pane label="TCP/IP" name="first" class="tcpipStyle">
+      <el-table :data="tableData" style="width: 100%" stripe>
+        <el-table-column prop="networkCard" label="网卡" width="180"></el-table-column>
+        <el-table-column prop="ip" label="IP地址" width="180"></el-table-column>
+        <el-table-column prop="model" label="网卡模式" width="180"></el-table-column>
+        <el-table-column prop="bind" label="编辑" width="80" >
+            <template slot-scope="scope">
+              <el-button icon="el-icon-setting" @click="editNetwork(scope.row.index)" type="text">{{scope.row.edit}}</el-button>
+            </template>
+        </el-table-column>
+        <el-table-column prop="bind" label="绑定关系"></el-table-column>
+      </el-table> 
+    </el-tab-pane>
+  </el-tabs>
+  <tcp-ip-dialog :dialogFormTitle="title" :form="editValue" @confirm="confirm" ref="dialog"></tcp-ip-dialog>
+ </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      channels:[{title:'最大连接数',value:''},{title:'TCP端口',value:''},{title:'UDP端口',value:''},{title:'HTTP端口',value:''},{title:'HTTPS端口',value:''},{title:'RTSP端口',value:''},{title:'POS端口',value:''}],
+  <script>
+    import TcpIpDialog from '../../common/dialog.vue'
+    export default {
+      data() {
+        return {
+          activeName:'first',
+          tableData: [{
+            networkCard: '网卡1',
+            ip: '172.12.123.1',
+            model: '单网卡',
+            bind:'',
+            edit:'',
+            index:0
+          }, {
+            networkCard: '网卡1',
+            ip: '172.12.123.1',
+            model: '单网卡',
+            bind:'',
+            edit:'',
+            index:1
+          }, {
+            networkCard: '网卡1',
+            ip: '172.12.123.1',
+            model: '单网卡',
+            bind:'',
+            edit:'',
+            index:2
+          }, {
+            networkCard: '网卡1',
+            ip: '172.12.123.1',
+            model: '单网卡',
+            bind:'',
+            edit:'',
+            index:3
+          }],
+          formVisible: false,
+          title:'编辑网卡信息',
+          editValue:[{title:'网卡',value:'',type:'input'},{title:'网卡模式',value:'',type:'select',selectArr:[{name:'网卡1',value:0},{name:'网卡2',value:1}]}]
+        }
+      },
+      methods: {
+        editNetwork (index) {
+          // this.formVisible = true;
+          this.$refs.dialog.open();
+          // this.editValue[index]
+        },
+        confirm (event) {
+          console.log(event);
+          
+        }
+      },
+      components: {
+        TcpIpDialog
+      }
     }
-  },
-  methods:{
-    onApply() {
-      console.log('onApply');
-    },
-    onConfirm() {
-      console.log(this.channels);
-    },
-    onRefresh() {
-      console.log('onRefresh');
-    },
-    onDefault() {
-      console.log('onDefault');
-    }
+  </script>
+  <style>
+  .tcpipStyle .cell {
+    text-align: center;
   }
-}
-</script>
-<style scoped>
-
-</style>
+  </style>
+  

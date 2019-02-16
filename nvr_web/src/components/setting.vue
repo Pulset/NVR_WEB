@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-col :span="24" :offset="3">
+        <el-col :span="24" :offset="5">
             <el-menu :default-active="activeIndex" class="aside" router :unique-opened="true">
                 <el-submenu v-for="tab in tabs" v-bind:key="tab.title" :index="tab.router">
                     <template slot="title">
@@ -70,7 +70,9 @@ export default {
 }
 .setting-main {
     position: absolute;
-        top: 100px;
-        left: 280px;
+    top: 68px;
+    left: 250px;
+    /* margin-left: 60px;
+    margin-top: 40px; */
 }
 </style>

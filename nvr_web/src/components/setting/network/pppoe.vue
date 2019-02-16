@@ -1,5 +1,5 @@
 <template>
-  <el-form label-width="80px">
+  <el-form label-width="80px" label-position="left">
     <el-form-item v-for="item in channels" :label="item.title" :key="item.tile">
       <el-input v-model="item.value"></el-input>
     </el-form-item>
