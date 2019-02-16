@@ -1,13 +1,13 @@
 <template>
     <el-dialog :title="dialogFormTitle" :visible.sync="dialogFormVisible">
-    <el-form>
-        <el-form-item v-for="(item,index) in form" :key="index" :label="item.title" >
+    <el-form label-width="80px" label-position="left"> 
+        <el-form-item v-for="(item,index) in form" :key="index" :label="item.title">
             <template v-if="item.type === 'input'">
                 <el-input v-model="item.value" autocomplete="off" style="width:300px;"></el-input>
             </template>
             <template v-else>
-                <el-select v-model="item.value" placeholder="请选择活动区域">
-                    <el-option v-for="(option,index) in item.selectArr" :key="index" :label="option.name" :value="option.value"></el-option>
+                <el-select v-model="item.value" :placeholder="'请选择'+ item.title">
+                    <el-option v-for="(option,index) in item.selectArr" :key="index" :label="option.name" :value="option.name"></el-option>
                 </el-select>
             </template>
         </el-form-item>
@@ -44,8 +44,8 @@ export default {
     },
     methods:{
         handleConfirm() {
-            // console.log(this.$refs.dialog);
-            this.$emit('confirm', {value:this.form});
+            this.dialogFormVisible = false;
+            this.$emit('confirm', this.form);
         },
         open () {
             this.dialogFormVisible = true;

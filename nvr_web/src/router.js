@@ -5,6 +5,7 @@ import preview from './components/preview.vue'
 import playback from './components/playback.vue'
 import setting from './components/setting.vue'
 import alarm from './components/alarm.vue'
+import info from './components/info.vue'
 import device from './components/setting/image/device.vue'
 import camera from './components/setting/image/camera.vue'
 import encode from './components/setting/image/encode.vue'
@@ -59,6 +60,9 @@ const routes = [{
             path: 'network/ddns',
             component: ddns
         }]
+    }, {
+        path: '/info',
+        component: info
     }]
 
 const router = new VueRouter({
