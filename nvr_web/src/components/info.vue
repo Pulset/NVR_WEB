@@ -16,19 +16,19 @@ export default {
         tabs:[
             {
                 "title": "基本信息",
-                "router": "/baseInfo"
+                "router": "/info/baseInfo"
             },
             {
                 "title": "日志",
-                "router": "/log"
+                "router": "/info/log"
             },
             {
                 "title": "在线用户",
-                "router": "/onlineAccount"
+                "router": "/info/onlineAccount"
             },
             {
                 "title": "硬盘信息",
-                "router": "/hdd"
+                "router": "/info/hdd"
             }
         ]
       };

@@ -14,8 +14,10 @@ import tcpIp from './components/setting/network/tcpIp.vue'
 import port from './components/setting/network/port.vue'
 import pppoe from './components/setting/network/pppoe.vue'
 import ddns from './components/setting/network/ddns.vue'
-// import videoStream from './components/setting/image/encode/videoStream.vue'
-
+import baseInfo from './components/info/baseInfo.vue'
+import hdd from './components/info/hdd.vue'
+import log from './components/info/log.vue'
+import onlineAccount from './components/info/onlineAccount.vue'
 // import intellPlayback from './intellPlayback.vue'
 // import alarm from './alarm.vue'
 
@@ -62,7 +64,20 @@ const routes = [{
         }]
     }, {
         path: '/info',
-        component: info
+        component: info,
+        children:[{
+            path: 'baseInfo',
+            component: baseInfo
+        },{
+            path: 'hdd',
+            component: hdd
+        },{
+            path: 'log',
+            component: log
+        },{
+            path: 'onlineAccount',
+            component: onlineAccount
+        }]
     }]
 
 const router = new VueRouter({
