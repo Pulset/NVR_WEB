@@ -18,28 +18,36 @@
 export default {
   data() {
     return {
-      activeName:'first',
-      channels:[{title:'通道1',value:''},{title:'通道2',value:''},{title:'通道3',value:''},{title:'通道4',value:''},{title:'通道5',value:''},{title:'通道6',value:''},{title:'通道7',value:''}],
-    }
+      activeName: "first",
+      channels: [
+        { title: "通道1", value: "" },
+        { title: "通道2", value: "" },
+        { title: "通道3", value: "" },
+        { title: "通道4", value: "" },
+        { title: "通道5", value: "" },
+        { title: "通道6", value: "" },
+        { title: "通道7", value: "" }
+      ]
+    };
   },
-  methods:{
+  methods: {
     onApply() {
-      console.log('onApply');
+      console.log("onApply");
     },
     onConfirm() {
       console.log(this.channels);
     },
     onRefresh() {
-      console.log('onRefresh');
+      console.log("onRefresh");
     },
     onDefault() {
-      console.log('onDefault');
+      console.log("onDefault");
     }
   }
-}
+};
 </script>
 <style>
-  .el-input__inner{
-    width: 260px;
-  }
+.el-input__inner {
+  width: 260px;
+}
 </style>

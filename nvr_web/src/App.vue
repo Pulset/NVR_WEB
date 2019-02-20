@@ -6,7 +6,7 @@
       </el-header>
       <el-container>
         <!-- <el-aside>aside</el-aside>
-        <el-main>main</el-main> -->
+        <el-main>main</el-main>-->
         <router-view></router-view>
       </el-container>
     </el-container>
@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import NavMenu from './components/navMenu.vue'
+import NavMenu from "./components/navMenu.vue";
 export default {
-  name: 'app',
+  name: "app",
   components: {
     NavMenu
   }
-}
+};
 </script>
 
 <style>
@@ -30,18 +30,18 @@ export default {
     text-align: center;
     line-height: 60px;
   } */
-  
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  }
-  
-  .el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
+
+.el-aside {
+  background-color: #d3dce6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
+
+.el-main {
+  background-color: #e9eef3;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
+}
 </style>

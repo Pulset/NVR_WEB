@@ -18,26 +18,33 @@
 export default {
   data() {
     return {
-      activeName:'first',
-      channels:[{title:'最大连接数',value:''},{title:'TCP端口',value:''},{title:'UDP端口',value:''},{title:'HTTP端口',value:''},{title:'HTTPS端口',value:''},{title:'RTSP端口',value:''},{title:'POS端口',value:''}],
-    }
+      activeName: "first",
+      channels: [
+        { title: "最大连接数", value: "" },
+        { title: "TCP端口", value: "" },
+        { title: "UDP端口", value: "" },
+        { title: "HTTP端口", value: "" },
+        { title: "HTTPS端口", value: "" },
+        { title: "RTSP端口", value: "" },
+        { title: "POS端口", value: "" }
+      ]
+    };
   },
-  methods:{
+  methods: {
     onApply() {
-      console.log('onApply');
+      console.log("onApply");
     },
     onConfirm() {
       console.log(this.channels);
     },
     onRefresh() {
-      console.log('onRefresh');
+      console.log("onRefresh");
     },
     onDefault() {
-      console.log('onDefault');
+      console.log("onDefault");
     }
   }
-}
+};
 </script>
 <style scoped>
-
 </style>

@@ -3,8 +3,13 @@
     <el-tab-pane label="摄像头" name="first">
       <el-form ref="form" :model="form" label-width="80px" label-position="left">
         <el-form-item label="通道">
-          <el-select v-model="form.channel" placeholder="请选择通道" >
-            <el-option v-for="(channel, index) in channels" :key="index" :value="index" :label="channel"></el-option>
+          <el-select v-model="form.channel" placeholder="请选择通道">
+            <el-option
+              v-for="(channel, index) in channels"
+              :key="index"
+              :value="index"
+              :label="channel"
+            ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="配置文件">
@@ -36,45 +41,43 @@
       </el-form>
     </el-tab-pane>
   </el-tabs>
-  
 </template>
 <script>
 export default {
   data() {
     return {
-      activeName:'first',
-      channels:['通道1','通道2','通道3','通道4','通道5','通道6','通道7'],
-      configs:['配置1','配置2','配置3'],
-      form:{
-        channel:'',
-        config:'',
-        brightness:0,
-        contrast:0,
-        saturation:0,
-        acuity:10,
-        denoise:''
+      activeName: "first",
+      channels: ["通道1", "通道2", "通道3", "通道4", "通道5", "通道6", "通道7"],
+      configs: ["配置1", "配置2", "配置3"],
+      form: {
+        channel: "",
+        config: "",
+        brightness: 0,
+        contrast: 0,
+        saturation: 0,
+        acuity: 10,
+        denoise: ""
       }
-    }
+    };
   },
-  methods:{
+  methods: {
     onApply() {
-      console.log('onApply');
+      console.log("onApply");
     },
     onConfirm() {
       console.log(this.form);
     },
     onRefresh() {
-      console.log('onRefresh');
+      console.log("onRefresh");
     },
     onDefault() {
-      console.log('onDefault');
+      console.log("onDefault");
     },
     onChangeConfig(value) {
       console.log(value);
     }
   }
-}
+};
 </script>
 <style scoped>
-
 </style>
