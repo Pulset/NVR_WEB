@@ -9,7 +9,7 @@
           <el-table-column prop="bind" label="编辑" width="80">
             <template slot-scope="scope">
               <el-button
-                icon="el-icon-setting"
+                icon="el-icon-edit"
                 @click="editNetwork(scope.row.index)"
                 type="text"
               >{{scope.row.edit}}</el-button>

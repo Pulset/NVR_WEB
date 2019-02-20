@@ -32,11 +32,11 @@ export default {
         },
         {
           title: "设置",
-          router: "/setting"
+          router: "/setting/image/device"
         },
         {
           title: "信息",
-          router: "/info"
+          router: "/info/baseInfo"
         },
         {
           title: "注销",

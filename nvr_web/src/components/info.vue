@@ -1,10 +1,11 @@
 <template>
   <div>
     <el-col :span="24" :offset="3">
-      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="vertical" router>
-        <el-menu-item v-for="tab in tabs" v-bind:key="tab.title" :index="tab.router">{{tab.title}}</el-menu-item>
+      <el-menu :default-active="activeIndex" class="aside" mode="vertical" router>
+        <el-menu-item v-for="tab in tabs" :key="tab.title" :index="tab.router">{{tab.title}}</el-menu-item>
       </el-menu>
       <div class="line"></div>
+      <router-view class="setting-main"></router-view>
     </el-col>
   </div>
 </template>
@@ -12,10 +13,10 @@
 export default {
   data() {
     return {
-      activeIndex: "/baseInfo",
+      activeIndex: "/info/baseInfo",
       tabs: [
         {
-          title: "基本信息",
+          title: "版本信息",
           router: "/info/baseInfo"
         },
         {
@@ -40,5 +41,14 @@ export default {
 .el-menu-item {
   width: 150px;
   text-align: center;
+}
+.setting-main {
+  position: absolute;
+  top: 68px;
+  left: 250px;
+}
+.aside {
+  width: 200px;
+  min-height: 400px;
 }
 </style>

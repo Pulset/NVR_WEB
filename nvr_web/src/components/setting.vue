@@ -24,7 +24,7 @@
 export default {
   data() {
     return {
-      activeIndex: "1",
+      activeIndex: "/setting/image/device",
       tabs: [
         {
           title: "摄像头",
@@ -85,7 +85,5 @@ export default {
   position: absolute;
   top: 68px;
   left: 250px;
-  /* margin-left: 60px;
-    margin-top: 40px; */
 }
 </style>
