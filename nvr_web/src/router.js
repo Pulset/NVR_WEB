@@ -1,11 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import preview from "./components/preview.vue";
-import playback from "./components/playback.vue";
-import setting from "./components/setting.vue";
-import alarm from "./components/alarm.vue";
-import info from "./components/info.vue";
+import preview from "./components/menu/preview.vue";
+import playback from "./components/menu/playback.vue";
+import setting from "./components/menu/setting.vue";
+import alarm from "./components/menu/alarm.vue";
+import info from "./components/menu/info.vue";
 import device from "./components/setting/image/device.vue";
 import camera from "./components/setting/image/camera.vue";
 import encode from "./components/setting/image/encode.vue";

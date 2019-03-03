@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-col :span="24" :offset="3">
+    <el-col :span="21" :offset="3">
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router>
         <el-menu-item v-for="tab in tabs" v-bind:key="tab.title" :index="tab.router">{{tab.title}}</el-menu-item>
       </el-menu>

@@ -17,19 +17,19 @@
             <el-option v-for="(item, index) in configs" :key="index" :value="index" :label="item"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="亮度">
+        <el-form-item label="亮度" class="cameraStyle">
           <el-slider v-model="form.brightness"></el-slider>
         </el-form-item>
-        <el-form-item label="对比度">
+        <el-form-item label="对比度" class="cameraStyle">
           <el-slider v-model="form.contrast"></el-slider>
         </el-form-item>
-        <el-form-item label="饱和度">
+        <el-form-item label="饱和度" class="cameraStyle">
           <el-slider v-model="form.saturation"></el-slider>
         </el-form-item>
-        <el-form-item label="锐度">
+        <el-form-item label="锐度" class="cameraStyle">
           <el-slider v-model="form.acuity"></el-slider>
         </el-form-item>
-        <el-form-item label="锐度">
+        <el-form-item label="锐度" class="cameraStyle">
           <el-radio v-model="form.denoise" label="1">开启</el-radio>
           <el-radio v-model="form.denoise" label="2">关闭</el-radio>
         </el-form-item>
@@ -80,4 +80,7 @@ export default {
 };
 </script>
 <style scoped>
+.cameraStyle {
+  width: 333px;
+}
 </style>
