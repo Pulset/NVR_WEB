@@ -18,9 +18,17 @@ const ajax = {
       url: url,
       data: params
     };
-    return axios(this.options).then(function(result) {
-      return result;
-    });
+    return axios(this.options)
+      .then(function(result) {
+        return result;
+      })
+      .catch(function(error) {
+        // handle error
+        return error;
+      })
+      .then(function() {
+        // always executed
+      });
   }
 };
 export default ajax;

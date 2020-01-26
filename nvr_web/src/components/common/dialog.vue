@@ -1,7 +1,11 @@
 <template>
-  <el-dialog :title="dialogFormTitle" :visible.sync="dialogFormVisible">
+  <el-dialog
+    :title="dialogFormTitle"
+    :visible.sync="dialogFormVisible"
+    :close-on-click-modal="false"
+  >
     <el-form label-width="80px" label-position="left">
-      <el-form-item v-for="(item,index) in form" :key="index" :label="item.title">
+      <el-form-item v-for="(item,index) in originForm" :key="index" :label="item.title">
         <template v-if="item.type === 'input'">
           <el-input v-model="item.value" autocomplete="off" style="width:300px;"></el-input>
         </template>
@@ -11,7 +15,7 @@
               v-for="(option,index) in item.selectArr"
               :key="index"
               :label="option.name"
-              :value="option.name"
+              :value="option.value"
             ></el-option>
           </el-select>
         </template>
@@ -24,9 +28,7 @@
   </el-dialog>
 </template>
 <script>
-// form:{
-//     form:[{title:'网卡',value:'',type:'input'},{title:'网卡模式',value:'',type:'select',selectArr:[{name:'网卡1',value:1},'网卡2']}]
-// }
+//form:[{title:'网卡',value:'',type:'input'},{title:'网卡模式',value:'',type:'select',selectArr:[{name:'网卡1',value:1},'网卡2']}]
 export default {
   props: {
     dialogFormTitle: {
@@ -40,19 +42,27 @@ export default {
   },
   data() {
     return {
-      dialogFormVisible: false
+      dialogFormVisible: false,
+      originForm: [],
+      index:0 // 选中的数据下标
     };
   },
   methods: {
     handleConfirm() {
-      this.dialogFormVisible = false;
-      this.$emit("confirm", this.form);
+      this.$emit("confirm", this.originForm, this.index);
+      this.close();
     },
     open() {
+      this.originForm = JSON.parse(JSON.stringify(this.form)); // 为了每次调用都是新的数据
       this.dialogFormVisible = true;
     },
     close() {
       this.dialogFormVisible = false;
+    },
+    changeForm(newForm, index) {
+      this.originForm = newForm;
+      this.index = index;
+      this.dialogFormVisible = true;
     }
   }
 };

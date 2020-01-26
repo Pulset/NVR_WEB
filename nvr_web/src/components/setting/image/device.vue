@@ -2,7 +2,13 @@
   <div>
     <el-tabs v-model="activeName" type="card">
       <el-tab-pane label="远程设备" name="first" class="deviceStyle">
-        <el-table :data="tableData" style="width: 100%" stripe height="300">
+        <el-table
+          :data="tableData"
+          style="width: 100%"
+          stripe
+          height="300"
+          @selection-change="selectedFn"
+        >
           <el-table-column type="selection" width="55"></el-table-column>
           <el-table-column prop="channel" label="通道" width="180"></el-table-column>
           <el-table-column prop="channelName" label="通道名称" width="180"></el-table-column>
@@ -24,14 +30,14 @@
         </el-table>
         <div style class="deviceButtonStyle">
           <el-button @click="addRemoteDevice">添加</el-button>
-          <el-button @click="addDevice">手动添加</el-button>
+          <el-button @click="manualAddDevice">手动添加</el-button>
           <el-button @click="editIP">修改ip</el-button>
         </div>
         <div
           class="el-tabs__item"
           style="border: 1px solid#e6e6e6;border-bottom:none;color:#409EFF"
         >远程设备</div>
-        <el-table :data="tableData" style="width: 100%" stripe height="300">
+        <el-table :data="deviceTableData" style="width: 100%" stripe height="300">
           <el-table-column type="selection" width="55"></el-table-column>
           <el-table-column prop="channel" label="通道" width="180"></el-table-column>
           <el-table-column prop="channelName" label="通道名称" width="180"></el-table-column>
@@ -71,48 +77,22 @@
         </el-table>
       </el-tab-pane>
     </el-tabs>
-    <!-- <el-form style="margin-left:40px;margin-top:100px;" label-width="150px" label-position="left">
-      <el-form-item label="IP版本">
-        <el-select v-model="ipType" placeholder="请选择IP版本">
-          <el-option value="IPv4" label="IPv4"></el-option>
-          <el-option value="IPv6" label="IPv6"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="首选DNS服务器" class="ipStyle">
-        <input type="tel">
-        <span>.</span>
-        <input type="tel">
-        <span>.</span>
-        <input type="tel">
-        <span>.</span>
-        <input type="tel">
-      </el-form-item>
-      <el-form-item label="备用DNS服务器" class="ipStyle">
-        <input type="tel">
-        <span>.</span>
-        <input type="tel">
-        <span>.</span>
-        <input type="tel">
-        <span>.</span>
-        <input type="tel">
-      </el-form-item>
-      <el-form-item label="默认网卡">
-        <el-select v-model="defaultNetworkCard" placeholder="请选择默认网卡">
-          <el-option value="0" label="网卡1"></el-option>
-          <el-option value="1" label="网卡2"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-button @click="onConfirm">确定</el-button>
-        <el-button @click="onRefresh">刷新</el-button>
-        <el-button @click="onDefault">恢复默认</el-button>
-      </el-form-item>
-    </el-form>
-    <tcp-ip-dialog :dialogFormTitle="title" :form="editValue" @confirm="confirm" ref="dialog"></tcp-ip-dialog>-->
+    <addDeviceDialog
+      dialogFormTitle="添加设备"
+      :form="initDeviceData"
+      @confirm="addDeviceConfirm"
+      ref="dialog"
+    ></addDeviceDialog>
+    <addDeviceDialog
+      dialogFormTitle="修改设备"
+      :form="initDeviceData"
+      @confirm="editDialogConfirm"
+      ref="editDialog"
+    ></addDeviceDialog>
   </div>
 </template>
-  <script>
-// import TcpIpDialog from "../../common/dialog.vue";
+<script>
+import addDeviceDialog from "../../common/dialog.vue";
 export default {
   data() {
     return {
@@ -120,6 +100,7 @@ export default {
       currentIndex: 0,
       ipType: "IPv4",
       defaultNetworkCard: "0",
+      selectdDevice: [], //远程设备勾选的数据
       tableData: [
         {
           channel: "D1",
@@ -131,6 +112,7 @@ export default {
           port: "37777",
           deviceName: "1231234CS123",
           remoteChannel: "1",
+          index: 0,
           manufacturer: "私有",
           type: "IPC-123"
         },
@@ -140,10 +122,11 @@ export default {
           edit: "",
           delete: "",
           status: "",
-          ip: "172.12.123.1",
+          ip: "172.12.123.2",
           port: "37777",
           deviceName: "1231234CS123",
           remoteChannel: "1",
+          index: 1,
           type: "IPC-123",
           manufacturer: "私有"
         },
@@ -153,10 +136,55 @@ export default {
           edit: "",
           delete: "",
           status: "",
-          ip: "172.12.123.1",
+          ip: "172.12.123.4",
           port: "37777",
           deviceName: "1231234CS123",
           remoteChannel: "1",
+          index: 2,
+          type: "IPC-123",
+          manufacturer: "私有"
+        }
+      ],
+      deviceTableData: [
+        {
+          channel: "D1",
+          channelName: "IPC1",
+          edit: "",
+          delete: "",
+          status: "",
+          ip: "172.12.11.1",
+          port: "37777",
+          deviceName: "1231234CS123",
+          remoteChannel: "1",
+          index: 0,
+          manufacturer: "私有",
+          type: "IPC-123"
+        },
+        {
+          channelName: "IPC2",
+          channel: "D1",
+          edit: "",
+          delete: "",
+          status: "",
+          ip: "172.12.33.2",
+          port: "37777",
+          deviceName: "1231234CS123",
+          remoteChannel: "1",
+          index: 1,
+          type: "IPC-123",
+          manufacturer: "私有"
+        },
+        {
+          channelName: "IPC3",
+          channel: "D1",
+          edit: "",
+          delete: "",
+          status: "",
+          ip: "172.12.1.4",
+          port: "37777",
+          deviceName: "1231234CS123",
+          remoteChannel: "1",
+          index: 2,
           type: "IPC-123",
           manufacturer: "私有"
         }
@@ -175,37 +203,115 @@ export default {
             { name: "双网卡", value: 1 }
           ]
         }
+      ],
+      initDeviceData: [
+        {
+          class: "manufacturer",
+          title: "厂商",
+          value: "",
+          type: "select",
+          selectArr: [
+            { name: "私有", value: 1 },
+            { name: "onvif", value: 2 }
+          ]
+        },
+        { class: "ip", title: "IP", value: "", type: "input" },
+        { class: "password", title: "密码", value: "", type: "input" },
+        { class: "channel", title: "远程通道", value: "", type: "input" }
       ]
     };
   },
+  components: {
+    addDeviceDialog
+  },
   created: function() {
-    this.ajax.post("http://yapi.demo.qunar.com/mock/47298/login", {
-      userName: "virus",
-      password: 12
-    }).then(function (res) {
-      console.log(res);
-    })
+    this.ajax
+      .post("http://yapi.demo.qunar.com/mock/47298/login", {
+        userName: "virus",
+        password: 12
+      })
+      .then(function(res) {
+        console.log(res);
+      });
   },
   methods: {
-    editChannel() {},
-    deleteChannel() {},
-    addRemoteDevice() {},
-    addDevice() {},
-    editIP() {}
-    // confirm(event) {
-    //   this.tableData[this.currentIndex].networkCard = event[0].value;
-    //   this.tableData[this.currentIndex].ip = event[1].value;
-    //   this.tableData[this.currentIndex].model = event[2].value;
-    // },
-    // onConfirm() {
-    //   console.log("onConfirm");
-    // },
-    // onRefresh() {
-    //   console.log("onRefresh");
-    // },
-    // onDefault() {
-    //   console.log("onDefault");
-    // }
+    editChannel(index) {
+      var data = JSON.parse(JSON.stringify(this.initDeviceData));
+      data.forEach(item => {
+        item.value = this.deviceTableData[index][item.class];
+      });
+      this.$refs.editDialog.changeForm(data, index);
+    },
+    deleteChannel(index) {
+      this.deviceTableData.splice(index, 1);
+      this.deviceTableData.forEach((item, i) => {
+        item.index = i;
+      });
+    },
+    addRemoteDevice() {
+      if (this.selectdDevice.length) {
+        this.saveDeviceInfo(this.selectdDevice);
+      } else {
+        this.$message({
+          message: "至少勾选一个远程设备",
+          type: "warning"
+        });
+      }
+    },
+    manualAddDevice() {
+      this.$refs.dialog.open();
+    },
+    selectedFn(val) {
+      this.selectdDevice = val;
+    },
+    editIP() {
+      if (this.selectdDevice.length) {
+        var data = JSON.parse(JSON.stringify(this.initDeviceData));
+        data.forEach(item => {
+          item.value = this.selectdDevice[0][item.class];
+        });
+        this.$refs.dialog.changeForm(data);
+      } else {
+        this.$message({
+          message: "至少勾选一个远程设备",
+          type: "warning"
+        });
+      }
+    },
+    addDeviceConfirm(event) {
+      let deviceInfo = {};
+      deviceInfo.manufacturer = event[0].value;
+      deviceInfo.ip = event[1].value;
+      deviceInfo.password = event[2].value;
+      deviceInfo.remoteChannel = event[3].value;
+      this.saveDeviceInfo(deviceInfo);
+    },
+    editDialogConfirm(event, index) {
+      this.deviceTableData[index].manufacturer = event[0].value;
+      this.deviceTableData[index].ip = event[1].value;
+      this.deviceTableData[index].password = event[2].value;
+      this.deviceTableData[index].remoteChannel = event[3].value;
+    },
+    saveDeviceInfo(deviceInfo) {
+      var _this = this;
+      this.ajax
+        .post("http://yapi.demo.qunar.com/mock/47298/login", deviceInfo)
+        .then(function(res) {
+          console.log(res);
+          _this.$message({
+            message: "操作成功",
+            type: "success"
+          });
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+          _this.$message({
+            message: "操作失败",
+            type: "error"
+          });
+        });
+    }
   }
 };
 </script>

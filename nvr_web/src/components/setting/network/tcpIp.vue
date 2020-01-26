@@ -6,7 +6,7 @@
           <el-table-column prop="networkCard" label="网卡" width="180"></el-table-column>
           <el-table-column prop="ip" label="IP地址" width="180"></el-table-column>
           <el-table-column prop="model" label="网卡模式" width="180"></el-table-column>
-          <el-table-column prop="bind" label="编辑" width="80">
+          <el-table-column prop="edit" label="编辑" width="80">
             <template slot-scope="scope">
               <el-button
                 icon="el-icon-edit"
@@ -27,22 +27,22 @@
         </el-select>
       </el-form-item>
       <el-form-item label="首选DNS服务器" class="ipStyle">
-        <input type="tel">
+        <input type="tel" />
         <span>.</span>
-        <input type="tel">
+        <input type="tel" />
         <span>.</span>
-        <input type="tel">
+        <input type="tel" />
         <span>.</span>
-        <input type="tel">
+        <input type="tel" />
       </el-form-item>
       <el-form-item label="备用DNS服务器" class="ipStyle">
-        <input type="tel">
+        <input type="tel" />
         <span>.</span>
-        <input type="tel">
+        <input type="tel" />
         <span>.</span>
-        <input type="tel">
+        <input type="tel" />
         <span>.</span>
-        <input type="tel">
+        <input type="tel" />
       </el-form-item>
       <el-form-item label="默认网卡">
         <el-select v-model="defaultNetworkCard" placeholder="请选择默认网卡">
