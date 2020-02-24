@@ -56,7 +56,7 @@
         <el-button @click="onDefault">恢复默认</el-button>
       </el-form-item>
     </el-form>
-    <tcp-ip-dialog :dialogFormTitle="title" :form="editValue" @confirm="confirm" ref="dialog"></tcp-ip-dialog>
+    <tcp-ip-dialog :dialogFormTitle="title" :form="editValue" @confirm="confirms" ref="dialog"></tcp-ip-dialog>
   </div>
 </template>
   <script>
@@ -127,7 +127,7 @@ export default {
       this.editValue[2].value = this.tableData[index].model;
       this.$refs.dialog.open();
     },
-    confirm(event) {
+    confirms(event) {
       this.tableData[this.currentIndex].networkCard = event[0].value;
       this.tableData[this.currentIndex].ip = event[1].value;
       this.tableData[this.currentIndex].model = event[2].value;
@@ -141,6 +141,30 @@ export default {
     onDefault() {
       console.log("onDefault");
     }
+  },
+  beforeCreate(){
+    console.log('beforeCreate');
+  },
+  created(){
+    console.log('created');
+  },
+  beforeMount(){
+    console.log('beforeMount',this.$data);
+  },
+  mounted(){
+    console.log('mounted',this.$el );
+  },
+  beforeDestroy(){
+    console.log('beforeDestroy');
+  },
+  destroyed(){
+    console.log('destroyed');
+  },
+  beforeUpdate(){
+    console.log('beforeUpdate');
+  },
+  updated(){
+    console.log('updated');
   },
   components: {
     TcpIpDialog

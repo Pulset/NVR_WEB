@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+import login from "./components/login.vue";
 import preview from "./components/menu/preview.vue";
 import playback from "./components/menu/playback.vue";
 import setting from "./components/menu/setting.vue";
@@ -24,8 +25,13 @@ import onlineAccount from "./components/info/onlineAccount.vue";
 Vue.use(VueRouter);
 const routes = [
   {
+    // 会匹配所有路径
+    path: '*',
+    component: login
+  },
+  {
     path: "/",
-    component: preview
+    component: login
   },
   {
     path: "/playback",

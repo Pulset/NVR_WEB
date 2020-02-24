@@ -218,7 +218,8 @@ export default {
         { class: "ip", title: "IP", value: "", type: "input" },
         { class: "password", title: "密码", value: "", type: "input" },
         { class: "channel", title: "远程通道", value: "", type: "input" }
-      ]
+      ],
+      testObj: { name: 123 }
     };
   },
   components: {
@@ -226,13 +227,11 @@ export default {
   },
   created: function() {
     this.ajax
-      .post("http://yapi.demo.qunar.com/mock/47298/login", {
-        userName: "virus",
-        password: 12
-      })
+      .get("http://yapi.demo.qunar.com/mock/81186/login")
       .then(function(res) {
         console.log(res);
       });
+    console.log(this.testObj);
   },
   methods: {
     editChannel(index) {

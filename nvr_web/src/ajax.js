@@ -1,4 +1,5 @@
 import axios from "axios";
+import qs from "qs";
 const ajax = {
   options: {},
   get: function(url) {
@@ -16,7 +17,7 @@ const ajax = {
       method: "POST",
       headers: { "content-type": "application/x-www-form-urlencoded" },
       url: url,
-      data: params
+      data: qs.stringify(params)
     };
     return axios(this.options)
       .then(function(result) {
