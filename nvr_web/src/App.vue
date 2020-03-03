@@ -1,18 +1,14 @@
 <template>
   <div id="app">
-    <el-container>
-      <div v-if="false">
-        <el-header>
-          <NavMenu></NavMenu>
-        </el-header>
-        <el-container>
-          <!-- <el-aside>aside</el-aside>
-          <el-main>main</el-main>-->
-          <router-view></router-view>
-        </el-container>
-      </div>
+    <el-container v-if="isLogin">
+      <el-header>
+        <NavMenu></NavMenu>
+      </el-header>
+      <el-container>
+        <router-view></router-view>
+      </el-container>
     </el-container>
-    <login></login>
+    <login v-if="!isLogin"></login>
   </div>
 </template>
 
@@ -24,12 +20,17 @@ export default {
   components: {
     NavMenu,
     login
+  },
+  computed: {
+    isLogin() {
+      return this.$store.state.isLogin;
+    }
   }
 };
 </script>
 
 <style>
-*{
+* {
   margin: 0;
   padding: 0;
 }

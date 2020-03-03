@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     loginHandle() {
-      // console.log(this.username,this.password);
       var _this = this;
       if (this.username && this.password) {
         this.ajax
@@ -31,15 +30,20 @@ export default {
             password: this.password
           })
           .then(function(res) {
-            console.log(res);
-            _this.$message({
-              message: "操作成功",
-              type: "success"
-            });
+            if (res.result) {
+              _this.$message({
+                message: "登陆成功",
+                type: "success"
+              });
+              _this.$store.commit("login");
+            } else {
+              _this.$message({
+                message: "登陆失败",
+                type: "error"
+              });
+            }
           })
-          .catch(function(error) {
-            // handle error
-            console.log(error);
+          .catch(function() {
             _this.$message({
               message: "操作失败",
               type: "error"

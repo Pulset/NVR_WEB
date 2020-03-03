@@ -19,20 +19,21 @@ import baseInfo from "./components/info/baseInfo.vue";
 import hdd from "./components/info/hdd.vue";
 import log from "./components/info/log.vue";
 import onlineAccount from "./components/info/onlineAccount.vue";
+import loginOut from "./components/loginOut/loginOut.vue";
 // import intellPlayback from './intellPlayback.vue'
 // import alarm from './alarm.vue'
 
 Vue.use(VueRouter);
 const routes = [
-  {
-    // 会匹配所有路径
-    path: '*',
-    component: login
-  },
-  {
-    path: "/",
-    component: login
-  },
+  // {
+  //   // 会匹配所有路径
+  //   path: "*",
+  //   component: login
+  // },
+  // {
+  //   path: "/",
+  //   component: login
+  // },
   {
     path: "/playback",
     component: playback
@@ -104,10 +105,22 @@ const routes = [
         component: onlineAccount
       }
     ]
+  },
+  {
+    path: "/loginOut",
+    component: loginOut
   }
 ];
 
 const router = new VueRouter({
   routes // (缩写) 相当于 routes: routes
+});
+router.beforeEach((to, from, next) => {
+  // console.log(to, from);
+  if (to.path === "/info/baseInfo") {
+    next();
+  } else {
+    next();
+  }
 });
 export default router;

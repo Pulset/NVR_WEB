@@ -19,17 +19,9 @@ const ajax = {
       url: url,
       data: qs.stringify(params)
     };
-    return axios(this.options)
-      .then(function(result) {
-        return result;
-      })
-      .catch(function(error) {
-        // handle error
-        return error;
-      })
-      .then(function() {
-        // always executed
-      });
+    return axios(this.options).then(function(result) {
+      return result.data;
+    });
   }
 };
 export default ajax;
