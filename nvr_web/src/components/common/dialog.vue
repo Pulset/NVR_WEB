@@ -44,7 +44,7 @@ export default {
     return {
       dialogFormVisible: false,
       originForm: [],
-      index:0 // 选中的数据下标
+      index: 0 // 选中的数据下标
     };
   },
   methods: {
@@ -63,7 +63,8 @@ export default {
       this.originForm = newForm;
       this.index = index;
       this.dialogFormVisible = true;
-    }
+    },
+    show() {}
   }
 };
 </script>

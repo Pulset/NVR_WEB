@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import login from "./components/login.vue";
+// import login from "./components/login.vue";
 import preview from "./components/menu/preview.vue";
 import playback from "./components/menu/playback.vue";
 import setting from "./components/menu/setting.vue";

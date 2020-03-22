@@ -24,10 +24,10 @@
 <script>
 export default {
   methods: {
-    handleOpen(key, keyPath) {
+    handleOpen() {
       // console.log(key, keyPath);
     },
-    handleClose(key, keyPath) {
+    handleClose() {
       // console.log(key, keyPath);
     }
   }

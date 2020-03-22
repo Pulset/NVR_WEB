@@ -4,7 +4,13 @@
       <div class="login-style">Login</div>
       <el-input v-model="username" placeholder="用户名" @blur="blurHandle"></el-input>
       <!-- <el-input v-model="password" placeholder="密码" show-password></el-input> -->
-      <input type="password" v-model="password" placeholder="密码" class="password-style" />
+      <input
+        type="password"
+        v-model="password"
+        placeholder="密码"
+        class="password-style"
+        @keyup.enter="loginHandle"
+      />
       <div>
         <el-button type="primary" round class="login-button" @click="loginHandle">登陆</el-button>
       </div>
@@ -25,7 +31,7 @@ export default {
       var _this = this;
       if (this.username && this.password) {
         this.ajax
-          .post("http://yapi.demo.qunar.com/mock/81186/login", {
+          .post("login", {
             username: this.username,
             password: this.password
           })
