@@ -1,7 +1,7 @@
 <template>
   <el-tabs v-model="activeName" type="card">
     <el-tab-pane label="DDNS" name="first">
-      <el-form label-width="80px" label-position="left">
+      <el-form label-width="100px" label-position="left">
         <el-form-item v-for="item in channels" :label="item.title" :key="item.tile">
           <el-input v-model="item.value"></el-input>
         </el-form-item>

@@ -84,10 +84,9 @@ export default {
     deviceDialog
   },
   created: function() {
-    let _this = this;
-    this.ajax.get("getLocalDevice").then(function(res) {
-      _this.localDevice = res;
-      _this.localDevice.forEach((item, index) => {
+    this.ajax.get("getLocalDevice").then(res => {
+      this.localDevice = res;
+      this.localDevice.forEach((item, index) => {
         item.index = index;
       });
     });
@@ -133,11 +132,10 @@ export default {
       this.selectdDevice = val;
     },
     searchRemoteDevice() {
-      let _this = this;
-      _this.isLoading = true;
-      this.ajax.get("getRemoteDevice").then(function(res) {
-        _this.remoteDevice = res;
-        _this.isLoading = false;
+      this.isLoading = true;
+      this.ajax.get("getRemoteDevice").then(res => {
+        this.remoteDevice = res;
+        this.isLoading = false;
       });
     }
   }

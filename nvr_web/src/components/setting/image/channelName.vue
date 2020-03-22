@@ -30,10 +30,12 @@ export default {
       ]
     };
   },
+  created() {
+    this.ajax.get("getChannelName").then(res => {
+      this.channels = res;
+    });
+  },
   methods: {
-    onApply() {
-      console.log("onApply");
-    },
     onConfirm() {
       console.log(this.channels);
     },

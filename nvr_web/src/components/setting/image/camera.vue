@@ -3,18 +3,13 @@
     <el-tab-pane label="摄像头" name="first">
       <el-form ref="form" :model="form" label-width="80px" label-position="left">
         <el-form-item label="通道">
-          <el-select v-model="form.channel" placeholder="请选择通道">
+          <el-select @change="changeChannel" v-model="defaultChannel">
             <el-option
-              v-for="(channel, index) in channels"
+              v-for="(item, index) in channelOption"
+              :label="item.text"
+              :value="item.value"
               :key="index"
-              :value="index"
-              :label="channel"
             ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="配置文件">
-          <el-select v-model="form.config" placeholder="请选择配置文件" @change="onChangeConfig">
-            <el-option v-for="(item, index) in configs" :key="index" :value="index" :label="item"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="亮度" class="cameraStyle">
@@ -24,14 +19,16 @@
           <el-slider v-model="form.contrast"></el-slider>
         </el-form-item>
         <el-form-item label="饱和度" class="cameraStyle">
-          <el-slider v-model="form.saturation"></el-slider>
+          <el-slider v-model="form.saturability"></el-slider>
         </el-form-item>
         <el-form-item label="锐度" class="cameraStyle">
-          <el-slider v-model="form.acuity"></el-slider>
+          <el-slider v-model="form.acuity.acuity"></el-slider>
         </el-form-item>
         <el-form-item label="锐度" class="cameraStyle">
-          <el-radio v-model="form.denoise" label="1">开启</el-radio>
-          <el-radio v-model="form.denoise" label="2">关闭</el-radio>
+          <el-radio-group v-model="form.acuity.enable">
+            <el-radio :label="true">开启</el-radio>
+            <el-radio :label="false">关闭</el-radio>
+          </el-radio-group>
         </el-form-item>
         <el-form-item>
           <el-button @click="onConfirm">确定</el-button>
@@ -46,24 +43,58 @@
 export default {
   data() {
     return {
+      defaultChannel: 1,
       activeName: "first",
-      channels: ["通道1", "通道2", "通道3", "通道4", "通道5", "通道6", "通道7"],
-      configs: ["配置1", "配置2", "配置3"],
+      channelOption: [
+        {
+          text: "D1",
+          value: 1
+        },
+        {
+          text: "D2",
+          value: 2
+        },
+        {
+          text: "D3",
+          value: 3
+        },
+        {
+          text: "D4",
+          value: 4
+        },
+        {
+          text: "D5",
+          value: 5
+        },
+        {
+          text: "D5",
+          value: 5
+        },
+        {
+          text: "D7",
+          value: 7
+        },
+        {
+          text: "D8",
+          value: 8
+        }
+      ],
       form: {
-        channel: "",
-        config: "",
-        brightness: 0,
-        contrast: 0,
-        saturation: 0,
-        acuity: 10,
-        denoise: ""
+        brightness: 33,
+        contrast: 22,
+        saturability: 12,
+        acuity: { enable: false, acuity: 80 }
       }
     };
   },
+  created() {
+    this.ajax
+      .post("getCameraConfig", { channel: this.defaultChannel })
+      .then(res => {
+        this.form = res;
+      });
+  },
   methods: {
-    onApply() {
-      console.log("onApply");
-    },
     onConfirm() {
       console.log(this.form);
     },
@@ -73,8 +104,10 @@ export default {
     onDefault() {
       console.log("onDefault");
     },
-    onChangeConfig(value) {
-      console.log(value);
+    changeChannel(val) {
+      this.ajax.post("getCameraConfig", { channel: val }).then(res => {
+        this.form = res;
+      });
     }
   }
 };
