@@ -28,35 +28,35 @@ export default {
   },
   methods: {
     loginHandle() {
-      var _this = this;
       if (this.username && this.password) {
         this.ajax
           .post("login", {
             username: this.username,
             password: this.password
           })
-          .then(function(res) {
+          .then(res => {
             if (res.result) {
-              _this.$message({
+              this.$message({
                 message: "登陆成功",
                 type: "success"
               });
-              _this.$store.commit("login");
+              this.$store.commit("login");
+              this.$router.push("preview");
             } else {
-              _this.$message({
+              this.$message({
                 message: "登陆失败",
                 type: "error"
               });
             }
           })
-          .catch(function() {
-            _this.$message({
+          .catch(() => {
+            this.$message({
               message: "操作失败",
               type: "error"
             });
           });
       } else {
-        _this.$message({
+        this.$message({
           message: "请输入正确的用户名和密码",
           type: "error"
         });

@@ -1,25 +1,5 @@
 <template>
-  <el-row class="tac">
-    <el-col :span="4">
-      <el-menu
-        default-active="0"
-        class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
-      >
-        <el-submenu index="2">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>导航一</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="1">选项1</el-menu-item>
-            <el-menu-item index="2">选项2</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-      </el-menu>
-    </el-col>
-  </el-row>
+  <img src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg" />
 </template>
 <script>
 export default {
@@ -33,3 +13,11 @@ export default {
   }
 };
 </script>
+<style scoped>
+img {
+  height: 500px;
+  position: absolute;
+  left: 50%;
+  margin-left: -375px;
+}
+</style>

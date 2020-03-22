@@ -20,7 +20,7 @@ import hdd from "./components/info/hdd.vue";
 import log from "./components/info/log.vue";
 import onlineAccount from "./components/info/onlineAccount.vue";
 import loginOut from "./components/loginOut/loginOut.vue";
-// import intellPlayback from './intellPlayback.vue'
+import NotFound from "./components/NotFound.vue";
 // import alarm from './alarm.vue'
 
 Vue.use(VueRouter);
@@ -109,11 +109,16 @@ const routes = [
   {
     path: "/loginOut",
     component: loginOut
+  },
+  {
+    path: "*",
+    component: NotFound
   }
 ];
 
 const router = new VueRouter({
-  routes // (缩写) 相当于 routes: routes
+  routes, // (缩写) 相当于 routes: routes
+  mode: "history" // 加上这个配置项，url默认的 # 就不会出现了
 });
 router.beforeEach((to, from, next) => {
   // console.log(to, from);

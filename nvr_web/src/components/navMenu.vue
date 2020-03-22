@@ -23,10 +23,6 @@ export default {
           router: "/playback"
         },
         {
-          title: "智能回放",
-          router: "/intelligent"
-        },
-        {
           title: "报警",
           router: "/alarm"
         },
