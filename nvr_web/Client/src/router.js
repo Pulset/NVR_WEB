@@ -44,6 +44,7 @@ const routes = [
   },
   {
     path: "/alarm",
+    name: "alarm",
     component: alarm
   },
   {

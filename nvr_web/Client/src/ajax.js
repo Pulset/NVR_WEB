@@ -2,12 +2,12 @@ import axios from "axios";
 import qs from "qs";
 const ajax = {
   options: {},
-  baseUrl: "http://yapi.demo.qunar.com/mock/81186/",
+  baseUrl: "http://localhost:3000/",
   get: function(url) {
     this.options = {
       method: "GET",
       headers: { "content-type": "application/x-www-form-urlencoded" },
-      url: this.baseUrl + url
+      url: this.baseUrl + url,
     };
     return axios(this.options).then(function(result) {
       return result.data;
@@ -18,11 +18,11 @@ const ajax = {
       method: "POST",
       headers: { "content-type": "application/x-www-form-urlencoded" },
       url: this.baseUrl + url,
-      data: qs.stringify(params)
+      data: qs.stringify(params),
     };
     return axios(this.options).then(function(result) {
       return result.data;
     });
-  }
+  },
 };
 export default ajax;

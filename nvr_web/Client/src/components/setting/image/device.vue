@@ -28,6 +28,7 @@
           <el-button @click="addRemoteDevice">添加</el-button>
           <el-button @click="manualAddDevice">手动添加</el-button>
           <el-button @click="searchRemoteDevice" :loading="isLoading">搜索设备</el-button>
+          <el-button @click="routerTest">路由test</el-button>
         </div>
         <div
           class="el-tabs__item"
@@ -137,7 +138,22 @@ export default {
         this.remoteDevice = res;
         this.isLoading = false;
       });
+    },
+    routerTest() {
+      this.$router.push({ name: "alarm", params: { userId: 1 } });
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    next();
+    console.log(arguments);
+  },
+  beforeRouteUpdate(to, from, next) {
+    next();
+    console.log(arguments);
+  },
+  beforeRouteLeave(to, from, next) {
+    next();
+    console.log(arguments);
   }
 };
 </script>
